@@ -48,7 +48,7 @@ public class CompraDAO {
 	}
 
 	public void update(Compra compra) {
-		String sql = "UPDATE compra SET valor= ?, dataCompra = ?, quantidade = ?, cpf = ?, idPacote = ?" + "WHERE idCompra = ?";
+		String sql = "UPDATE compra SET valor= ?, dataCompra = ?, quantidade = ?, cpf = ?, idPacote = ? WHERE idCompra = ?";
 		
 
 		try {

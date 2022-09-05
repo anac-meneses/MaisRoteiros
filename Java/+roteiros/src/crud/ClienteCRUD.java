@@ -3,7 +3,9 @@ package crud;
 import java.util.Scanner;
 
 import dao.ClienteDAO;
+import dao.LoginDAO;
 import modelo.Cliente;
+import modelo.Login;
 
 public class ClienteCRUD {
 
@@ -12,7 +14,9 @@ public class ClienteCRUD {
 		Scanner input = new Scanner(System.in);
 		ClienteDAO clienteDAO = new ClienteDAO();
 		Cliente cliente = new Cliente();
-		String opcao = "";
+		LoginDAO loginDAO = new LoginDAO();
+		String opcao, nome, telefone, email, senha, cpf = "";
+		int login1 = 0;
 
 		do {
 			System.out.println("        ==== CADASTRO CLIENTE ====");
@@ -30,16 +34,20 @@ public class ClienteCRUD {
 			case "1":
 				System.out.println("==== Cadastro Cliente ====");
 				System.out.print("Digite o Nome: ");
-				cliente.setNome(input.next());
+				nome=input.next();
 				System.out.print("Digite o Telefone: ");
-				cliente.setTelefone(input.next());
+				telefone=input.next();
 				System.out.print("Digite o Email: ");
-				cliente.setEmail(input.next());
+				email=input.next();
 				System.out.print("Digite a Senha: ");
-				cliente.setSenha(input.next());
+				senha=input.next();
 				System.out.print("Digite o Cpf: ");
-				cliente.setCpf(input.next());
-				clienteDAO.save(cliente);
+				cpf=input.next();
+				System.out.println("Digite ID Login: ");
+				login1 = input.nextInt();
+				Login log = loginDAO.buscarID(login1);
+				Cliente cli1 = new Cliente(cpf, telefone, nome, email, senha, log);
+				clienteDAO.save(cli1);
 				break;
 
 			case "2":
@@ -50,13 +58,14 @@ public class ClienteCRUD {
 
 			case "3":
 				System.out.println("Digite o CPF do cliente para pesquisa: ");
-				String cpf = input.next();
+				cpf = input.next();
 				Cliente c = clienteDAO.buscarID(cpf);
 
 				System.out.println("Nome: " + c.getNome());
 				System.out.println("Telefone: " + c.getTelefone());
 				System.out.println("Email: " + c.getEmail());
 				System.out.println("CPF: " + c.getCpf());
+				System.out.println("ID Login: " + c.getLogin().getIdLogin());
 
 				System.out.println("-------------------------------------------------");
 				break;
@@ -67,6 +76,7 @@ public class ClienteCRUD {
 					System.out.println("Telefone: " + c1.getTelefone());
 					System.out.println("Email: " + c1.getEmail());
 					System.out.println("CPF: " + c1.getCpf());
+					System.out.println("ID Login: " + c1.getLogin().getIdLogin());
 					System.out.println("-------------------------------------------------");
 				}
 				break;
@@ -74,15 +84,19 @@ public class ClienteCRUD {
 			case "5":
 				System.out.println("Digite o CPF do cliente: ");
 				cliente.setCpf(input.next());
-				System.out.println("Digite o novo nome: ");
-				cliente.setNome(input.next());
-				System.out.println("Digite o novo telefone: ");
-				cliente.setTelefone(input.next());
-				System.out.println("Digite o novo email: ");
-				cliente.setEmail(input.next());
-				System.out.println("Digite a nova senha: ");
-				cliente.setSenha(input.next());
-				clienteDAO.update(cliente);
+				System.out.print("Digite o Nome: ");
+				nome=input.next();
+				System.out.print("Digite o Telefone: ");
+				telefone=input.next();
+				System.out.print("Digite o Email: ");
+				email=input.next();
+				System.out.print("Digite a Senha: ");
+				senha=input.next();
+				System.out.println("Digite ID Login: ");
+				login1 = input.nextInt();
+				Login log1 = loginDAO.buscarID(login1);
+				Cliente cli = new Cliente(cpf, telefone, nome, email, senha, log1);
+				clienteDAO.update(cli);
 				break;
 
 			case "6":

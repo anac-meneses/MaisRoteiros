@@ -52,12 +52,12 @@ public class PacotesDAO {
 		try {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, pacotes.getIdPacote());
-			pstm.setString(2, pacotes.getTranslado());
-			pstm.setString(3, pacotes.getHotel());
-			pstm.setString(4, pacotes.getQtNoites());
-			pstm.setInt(5, pacotes.getDestino().getIdDestino());
-			pstm.setInt(6, pacotes.getPreco());
+			pstm.setString(1, pacotes.getTranslado());
+			pstm.setString(2, pacotes.getHotel());
+			pstm.setString(3, pacotes.getQtNoites());
+			pstm.setInt(4, pacotes.getDestino().getIdDestino());
+			pstm.setInt(5, pacotes.getPreco());
+			pstm.setInt(6, pacotes.getIdPacote());
 			pstm.execute();
 
 		} catch (Exception e) {

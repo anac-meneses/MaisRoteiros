@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Cliente;
+import modelo.Login;
 
 
 public class ClienteDAO {
@@ -16,7 +17,7 @@ public class ClienteDAO {
 	ResultSet rset = null;
 
 	public void save(Cliente cliente) {
-		String sql = "INSERT INTO cliente (cpf, telefone, nome, email, senha)" + "VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO cliente (cpf, telefone, nome, email, senha, idLogin)" + "VALUES (?,?,?,?,?,?)";
 
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -26,6 +27,7 @@ public class ClienteDAO {
 			pstm.setString(3, cliente.getNome());
 			pstm.setString(4, cliente.getEmail());
 			pstm.setString(5, cliente.getSenha());
+			pstm.setInt(6, cliente.getLogin().getIdLogin());
 			pstm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,7 +46,7 @@ public class ClienteDAO {
 	}
 
 	public void update(Cliente cliente) {
-		String sql = "UPDATE cliente SET telefone = ?, nome = ?, email = ?, senha = ?" + "WHERE cpf = ?";
+		String sql = "UPDATE cliente SET telefone = ?, nome = ?, email = ?, senha = ?, idLogin = ? WHERE cpf = ?;";
 		
 
 		try {
@@ -54,7 +56,8 @@ public class ClienteDAO {
 			pstm.setString(2, cliente.getNome());
 			pstm.setString(3, cliente.getEmail());
 			pstm.setString(4, cliente.getSenha());
-			pstm.setString(5, cliente.getCpf());
+			pstm.setInt(5, cliente.getLogin().getIdLogin());
+			pstm.setString(6, cliente.getCpf());
 			pstm.execute();
 
 		} catch (Exception e) {
@@ -86,12 +89,14 @@ public class ClienteDAO {
 
 			while (rset.next()) {
 				Cliente clientes = new Cliente();
-				
+				Login login = new Login();
 				clientes.setCpf(rset.getString("cpf"));
 				clientes.setEmail(rset.getString("email"));
 				clientes.setNome(rset.getString("nome"));
 				clientes.setTelefone(rset.getString("telefone"));
 				clientes.setSenha(rset.getString("senha"));
+				login.setIdLogin(rset.getInt("idLogin"));
+				clientes.setLogin(login);
 				cliente.add(clientes);
 				
 			}
@@ -132,6 +137,7 @@ public class ClienteDAO {
 	public Cliente buscarID(String cpf) {
 		String sql = "SELECT * FROM cliente WHERE cpf = ?";
 		Cliente clientes = new Cliente();
+		Login login = new Login();
 			
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -144,6 +150,8 @@ public class ClienteDAO {
 			clientes.setNome(rset.getString("nome"));
 			clientes.setTelefone(rset.getString("telefone"));
 			clientes.setSenha(rset.getString("senha"));
+			login.setIdLogin(rset.getInt("idLogin"));
+			clientes.setLogin(login);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
