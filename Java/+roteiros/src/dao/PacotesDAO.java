@@ -14,8 +14,10 @@ public class PacotesDAO {
 	Connection conn = null;
 	PreparedStatement pstm = null;
 	ResultSet rset = null;
+	Pacotes pacotes = new Pacotes();
+	Destino destino = new Destino();				
 
-	public void save(Pacotes pacotes, Destino destino) {
+	public void save(Pacotes pacotes) {
 		String sql = "INSERT INTO pacotes (translado, hotel, qtNoites, idDestino, preco)" + "VALUES (?,?,?,?,?)";
 
 		try {
@@ -24,7 +26,7 @@ public class PacotesDAO {
 			pstm.setString(1, pacotes.getTranslado());
 			pstm.setString(2, pacotes.getHotel());
 			pstm.setString(3, pacotes.getQtNoites());
-			pstm.setInt(4, destino.getIdDestino());
+			pstm.setInt(4, pacotes.getDestino().getIdDestino());
 			pstm.setInt(5, pacotes.getPreco());
 			pstm.execute();
 		} catch (Exception e) {
@@ -44,16 +46,18 @@ public class PacotesDAO {
 	}
 	
 	public void update(Pacotes pacotes) {
-		String sql = "UPDATE pacotes SET translado = ?, hotel = ?, qtNoites = ?" + "WHERE idPacote = ?";
+		String sql = "UPDATE pacotes SET translado = ?, hotel = ?, qtNoites = ?, idDestino = ?, preco = ? WHERE idPacote = ?";
 		
 
 		try {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, pacotes.getTranslado());
-			pstm.setString(2, pacotes.getHotel());
-			pstm.setString(3, pacotes.getQtNoites());
-			pstm.setInt(4, pacotes.getIdPacote());
+			pstm.setInt(1, pacotes.getIdPacote());
+			pstm.setString(2, pacotes.getTranslado());
+			pstm.setString(3, pacotes.getHotel());
+			pstm.setString(4, pacotes.getQtNoites());
+			pstm.setInt(5, pacotes.getDestino().getIdDestino());
+			pstm.setInt(6, pacotes.getPreco());
 			pstm.execute();
 
 		} catch (Exception e) {
@@ -85,13 +89,12 @@ public class PacotesDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Pacotes pacotes = new Pacotes();
-				Destino destino = new Destino();				
 				pacotes.setTranslado(rset.getString("translado"));
 				pacotes.setHotel(rset.getString("hotel"));
 				pacotes.setQtNoites(rset.getString("qtNoites"));
 				pacotes.setIdPacote(rset.getInt("idPacote"));
 				destino.setIdDestino(rset.getInt("idDestino"));
+				pacotes.setDestino(destino);
 				pacotes.setPreco(rset.getInt("preco"));
 				pacote.add(pacotes);			
 				
@@ -127,8 +130,7 @@ public class PacotesDAO {
 	
 	public Pacotes buscarID(int id) {
 		String sql = "SELECT * FROM pacotes WHERE idPacote = ?";
-		Pacotes pacotes = new Pacotes();
-		Destino destino = new Destino();
+		
 	
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -141,6 +143,7 @@ public class PacotesDAO {
 			pacotes.setQtNoites(rset.getString("qtNoites"));
 			pacotes.setIdPacote(rset.getInt("idPacote"));
 			destino.setIdDestino(rset.getInt("idDestino"));
+			pacotes.setDestino(destino);
 			pacotes.setPreco(rset.getInt("preco"));
 			
 		} catch (Exception e) {
@@ -161,7 +164,7 @@ public class PacotesDAO {
 	}
 	
 	public void removeById(int id) {
-		String sql = "DELETE FROM pacotes WHERE idPacotes = ?";
+		String sql = "DELETE FROM pacotes WHERE idPacote = ?";
 		
 		try {
 			conn = Conexao.createConnectionToMySQL();

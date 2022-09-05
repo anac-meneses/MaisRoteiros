@@ -45,7 +45,8 @@ public class CompraCRUD {
 				cpf = input.next();
 				System.out.println("Digite o ID do Pacote: ");
 				idPacote = input.nextInt();
-				
+				System.out.println("Digite a data da compra: ");
+				dcompra = input.next();
 				Cliente cliente = clienteDAO.buscarID(cpf);
 				Pacotes pacote = pacoteDAO.buscarID(idPacote);
 				Compra c1  = new Compra(quantidade,dcompra, cliente, pacote);
@@ -68,6 +69,7 @@ public class CompraCRUD {
 				System.out.println("Quantidade: " + c.getQuantidade());
 				System.out.println("CPF: " + c.getCliente().getCpf());
 				System.out.println("ID Pacote" + c.getPacotes().getIdPacote());
+				System.out.println("Data: " + c.getDataCompra());
 
 				System.out.println("-------------------------------------------------");
 				break;
@@ -79,6 +81,7 @@ public class CompraCRUD {
 					System.out.println("Quantidade: " + c2.getQuantidade());
 					System.out.println("CPF: " + c2.getCliente().getCpf());
 					System.out.println("ID Pacote" + c2.getPacotes().getIdPacote());
+					System.out.println("Data: " + c2.getDataCompra());
 					System.out.println("-------------------------------------------------");
 				}
 				break;
@@ -92,6 +95,8 @@ public class CompraCRUD {
 				cpf = input.next();
 				System.out.println("Digite o ID do Pacote: ");
 				idPacote = input.nextInt();
+				System.out.println("Digite a data da compra: ");
+				dcompra = input.next();
 				
 				Cliente cliente1 = clienteDAO.buscarID(cpf);
 				Pacotes pacote2 = pacoteDAO.buscarID(idPacote);

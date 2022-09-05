@@ -1,9 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+//import java.util.Date;
 import java.util.List;
 
 import modelo.Cliente;
@@ -22,7 +25,8 @@ public class CompraDAO {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
 			pstm.setDouble(1, compra.getValor());
-			pstm.setString(2, compra.getDataCompra());
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			pstm.setDate(2, new Date(formatter.parse(compra.getDataCompra()).getTime()));
 			pstm.setInt(3, compra.getQuantidade());
 			pstm.setString(4, compra.getCliente().getCpf());
 			pstm.setInt(5, compra.getPacotes().getIdPacote());
@@ -44,17 +48,19 @@ public class CompraDAO {
 	}
 
 	public void update(Compra compra) {
-		String sql = "UPDATE comrpra SET valor= ?, dataCompra = ?, quantidade = ?, cpf = ?, idPacote = ?" + "WHERE idCompra = ?";
+		String sql = "UPDATE compra SET valor= ?, dataCompra = ?, quantidade = ?, cpf = ?, idPacote = ?" + "WHERE idCompra = ?";
 		
 
 		try {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
 			pstm.setDouble(1, compra.getValor());
-			pstm.setString(2, compra.getDataCompra());
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			pstm.setDate(2, new Date(formatter.parse(compra.getDataCompra()).getTime()));
 			pstm.setInt(3, compra.getQuantidade());
 			pstm.setString(4, compra.getCliente().getCpf());
 			pstm.setInt(5, compra.getPacotes().getIdPacote());
+			pstm.setInt(6, compra.getIdCompra());
 			pstm.execute();
 
 		} catch (Exception e) {
@@ -90,7 +96,8 @@ public class CompraDAO {
 				Pacotes pacote=new Pacotes();
 				
 				compras.setValor(rset.getDouble("valor"));
-				compras.setDataCompra(rset.getString("dataCompra"));
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				compras.setDataCompra(formatter.format(rset.getDate("dataCompra")));
 				compras.setIdCompra(rset.getInt("idCompra"));
 				compras.setQuantidade(rset.getInt("quantidade"));
 				cliente.setCpf(rset.getString("cpf"));
@@ -149,7 +156,8 @@ public class CompraDAO {
 			rset = pstm.executeQuery();
 			rset.next();
 			compras.setValor(rset.getDouble("valor"));
-			compras.setDataCompra(rset.getString("dataCompra"));
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			compras.setDataCompra(formatter.format(rset.getDate("dataCompra")));
 			compras.setIdCompra(rset.getInt("idCompra"));
 			compras.setQuantidade(rset.getInt("quantidade"));
 			cliente.setCpf(rset.getString("cpf"));

@@ -2,6 +2,7 @@ package crud;
 
 import java.util.Scanner;
 
+import dao.DestinosDAO;
 import dao.PacotesDAO;
 import modelo.Destino;
 import modelo.Pacotes;
@@ -11,9 +12,10 @@ public class PacotesCRUD {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		PacotesDAO pacotesDAO = new PacotesDAO();
-		Pacotes pacotes = new Pacotes();
-		Destino destino = new Destino();
-		String opcao = "";
+		DestinosDAO destinoDAO = new DestinosDAO();
+		String opcao = "", translado =  "", hotel = "", qnoites="";
+		int valor =0, destino = 0, id = 0, id2 = 0;
+		
 
 		do {
 			System.out.println("  ==== CADASTRO DE PACOTE CLIENTE ====");
@@ -31,16 +33,18 @@ public class PacotesCRUD {
 			case "1":
 				System.out.println("==== Cadastro Pacote ====");
 				System.out.print("Digite o pacote tem translado: ");
-				pacotes.setTranslado(input.next());
+				translado = input.next();
 				System.out.print("Digite o Hotel: ");
-				pacotes.setHotel(input.next());
+				hotel = input.next();
 				System.out.print("Digite a quantidade de noites: ");
-				pacotes.setQtNoites(input.next());
+				qnoites = input.next();
 				System.out.print("Digite o ID do Destino: ");
-				destino.setIdDestino(input.nextInt());
+				destino = input.nextInt();
 				System.out.print("Digite o Valor: ");
-				pacotes.setPreco(input.nextInt());
-				pacotesDAO.save(pacotes,destino);
+				valor = input.nextInt();
+				Destino destino1 = destinoDAO.buscarID(destino);
+				Pacotes p2 = new Pacotes(id,translado, hotel, qnoites, destino1, valor);
+				pacotesDAO.save(p2);
 				
 				break;
 
@@ -52,7 +56,7 @@ public class PacotesCRUD {
 
 			case "3":
 				System.out.println("Digite o ID do Pacote para pesquisar: ");
-				int id = input.nextInt();
+				id = input.nextInt();
 				Pacotes p = pacotesDAO.buscarID(id);
 
 				System.out.println("ID Pacote: " + p.getIdPacote());
@@ -60,6 +64,7 @@ public class PacotesCRUD {
 				System.out.println("Hotel: " + p.getHotel());
 				System.out.println("ID Destino: " + p.getIdPacote());
 				System.out.println("Valor: " + p.getPreco());
+				System.out.println("Quantidade de Noites: " + p.getQtNoites());
 
 				System.out.println("-------------------------------------------------");
 				break;
@@ -71,22 +76,27 @@ public class PacotesCRUD {
 					System.out.println("Hotel: " + p1.getHotel());
 					System.out.println("ID Destino: " + p1.getIdPacote());
 					System.out.println("Valor: " + p1.getPreco());
+					System.out.println("Quantidade de Noites: " + p1.getQtNoites());
 					System.out.println("-------------------------------------------------");
 				}
 				break;
 
 			case "5":
 				System.out.println("Digite ID do pacote: ");
-				pacotes.setIdPacote(input.nextInt());
-				System.out.println("Digite o novo translado: ");
-				pacotes.setTranslado(input.next());
-				System.out.println("Digite o novo Hotel: ");
-				pacotes.setHotel(input.next());
-				System.out.println("Digite o novo Destino: ");
-				destino.setIdDestino(input.nextInt());
-				System.out.println("Digite o novo Valor: ");
-				pacotes.setPreco(input.nextInt());
-				pacotesDAO.update(pacotes);
+				id2 = input.nextInt();
+				System.out.print("Digite o pacote tem translado: ");
+				translado = input.next();
+				System.out.print("Digite o Hotel: ");
+				hotel = input.next();
+				System.out.print("Digite a quantidade de noites: ");
+				qnoites = input.next();
+				System.out.print("Digite o ID do Destino: ");
+				destino = input.nextInt();
+				System.out.print("Digite o Valor: ");
+				valor = input.nextInt();
+				Destino destino2 = destinoDAO.buscarID(destino);
+				Pacotes p3 = new Pacotes(id2,translado, hotel, qnoites, destino2, valor);
+				pacotesDAO.update(p3);
 				break;
 
 			case "6":

@@ -8,8 +8,8 @@ public class Pacotes {
 	private int preco;
 	private Destino destino;
 
-	public Pacotes(int idPacote, String translado, String hotel, String qtNoites, int preco, Destino destino) {
-		this.idPacote = idPacote;
+	public Pacotes(int idPacotes, String translado, String hotel, String qtNoites, Destino destino, int preco) {
+		this.idPacote = idPacotes;
 		this.translado = translado;
 		this.hotel = hotel;
 		this.qtNoites = qtNoites;

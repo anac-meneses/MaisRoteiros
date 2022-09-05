@@ -1,22 +1,26 @@
 package modelo;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Compra {
 	private double valor;
 	private int idCompra;
 	private int quantidade;
-	private String dataCompra;
+	private LocalDate dataCompra;
 	private Cliente cliente;
 	private Pacotes pacotes;
 	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	public Compra( int quantidade, String dataCompra, Cliente cliente, Pacotes pacotes) {
 	
 		this.quantidade = quantidade;
-		this.dataCompra = dataCompra;
+		this.dataCompra = LocalDate.parse(dataCompra,formatter);
 		this.cliente = cliente;
 		this.pacotes = pacotes;
-		calculaTotal(pacotes.getPreco());
+		this.valor = pacotes.getPreco();
+		
 	}
 	public Compra() {
 	}
@@ -39,10 +43,10 @@ public class Compra {
 		this.quantidade = quantidade;
 	}
 	public String getDataCompra() {
-		return dataCompra;
+		return formatter.format(dataCompra);
 	}
 	public void setDataCompra(String dataCompra) {
-		this.dataCompra = dataCompra;
+		this.dataCompra = LocalDate.parse(dataCompra, formatter);
 	}
 	public Cliente getCliente() {
 		return cliente;
@@ -57,9 +61,8 @@ public class Compra {
 		this.pacotes = pacotes;
 	}
 	
-	private void calculaTotal(double preco) {
-		this.valor = quantidade * preco;
+	//private void calculaTotal(Pacotes pacotes) {
+		//this.valor = quantidade * pacotes.getPreco();
 	}
 
-	
-}
+
