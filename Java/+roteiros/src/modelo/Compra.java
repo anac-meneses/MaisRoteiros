@@ -19,7 +19,7 @@ public class Compra {
 		this.dataCompra = LocalDate.parse(dataCompra, formatter);
 		this.cliente = cliente;
 		this.pacotes = pacotes;
-		this.valor = pacotes.getPreco();
+		valorTotal(pacotes.getPreco());
 
 	}
 
@@ -72,6 +72,9 @@ public class Compra {
 
 	public void setPacotes(Pacotes pacotes) {
 		this.pacotes = pacotes;
+	}
+	private void valorTotal(double preco) {
+		this.valor = this.quantidade * preco;
 	}
 
 }
