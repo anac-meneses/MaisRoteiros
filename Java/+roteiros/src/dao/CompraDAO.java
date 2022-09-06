@@ -48,8 +48,7 @@ public class CompraDAO {
 	}
 
 	public void update(Compra compra) {
-		String sql = "UPDATE compra SET valor= ?, dataCompra = ?, quantidade = ?, cpf = ?, idPacote = ? WHERE idCompra = ?";
-		
+		String sql = "UPDATE compra SET valor = ?, dataCompra = ?, quantidade = ?, cpf = ?, idPacote = ? WHERE idCompra = ?";
 
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -79,10 +78,13 @@ public class CompraDAO {
 		}
 	}
 
-	public List<Compra> getCompra(){
-		String sql = "SELECT * FROM compras";		
+	public List<Compra> getCompra() {
+		String sql = "SELECT * FROM compras";
 		List<Compra> compra = new ArrayList<Compra>();
-		
+		Compra compras = new Compra();
+		Cliente cliente = new Cliente();
+		Pacotes pacote = new Pacotes();
+
 		try {
 			conn = Conexao.createConnectionToMySQL();
 
@@ -91,10 +93,7 @@ public class CompraDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Compra compras= new Compra();
-				Cliente cliente= new Cliente();
-				Pacotes pacote=new Pacotes();
-				
+
 				compras.setValor(rset.getDouble("valor"));
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 				compras.setDataCompra(formatter.format(rset.getDate("dataCompra")));
@@ -105,7 +104,7 @@ public class CompraDAO {
 				pacote.setIdPacote(rset.getInt("idPacote"));
 				compras.setPacotes(pacote);
 				compra.add(compras);
-				
+
 			}
 		} catch (Exception e) {
 
@@ -134,9 +133,6 @@ public class CompraDAO {
 			}
 		}
 
-		
-		
-		
 		return compra;
 
 	};
@@ -144,11 +140,9 @@ public class CompraDAO {
 	public Compra buscarID(int id) {
 		String sql = "SELECT * FROM compras WHERE idCompra = ?";
 		Compra compras = new Compra();
-		Cliente cliente= new Cliente();
-		Pacotes pacote=new Pacotes();
-		
-	
-			
+		Cliente cliente = new Cliente();
+		Pacotes pacote = new Pacotes();
+
 		try {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
@@ -164,7 +158,7 @@ public class CompraDAO {
 			compras.setCliente(cliente);
 			pacote.setIdPacote(rset.getInt("idPacote"));
 			compras.setPacotes(pacote);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -184,7 +178,7 @@ public class CompraDAO {
 
 	public void removeById(int id) {
 		String sql = "DELETE FROM compra WHERE idCompra = ?";
-		
+
 		try {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
@@ -206,5 +200,5 @@ public class CompraDAO {
 			}
 		}
 	}
-	
+
 }

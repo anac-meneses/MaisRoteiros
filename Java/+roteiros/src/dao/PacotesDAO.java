@@ -14,8 +14,7 @@ public class PacotesDAO {
 	Connection conn = null;
 	PreparedStatement pstm = null;
 	ResultSet rset = null;
-	Pacotes pacotes = new Pacotes();
-	Destino destino = new Destino();				
+
 
 	public void save(Pacotes pacotes) {
 		String sql = "INSERT INTO pacotes (translado, hotel, qtNoites, idDestino, preco)" + "VALUES (?,?,?,?,?)";
@@ -47,7 +46,6 @@ public class PacotesDAO {
 	
 	public void update(Pacotes pacotes) {
 		String sql = "UPDATE pacotes SET translado = ?, hotel = ?, qtNoites = ?, idDestino = ?, preco = ? WHERE idPacote = ?";
-		
 
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -80,6 +78,8 @@ public class PacotesDAO {
 		
 		String sql = "SELECT * FROM pacotes";
 		List<Pacotes> pacote = new ArrayList<Pacotes>();
+		Pacotes pacotes = new Pacotes();
+		Destino destino = new Destino();
 		
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -130,7 +130,8 @@ public class PacotesDAO {
 	
 	public Pacotes buscarID(int id) {
 		String sql = "SELECT * FROM pacotes WHERE idPacote = ?";
-		
+		Pacotes pacotes = new Pacotes();
+		Destino destino = new Destino();
 	
 		try {
 			conn = Conexao.createConnectionToMySQL();
