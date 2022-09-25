@@ -73,7 +73,7 @@ public class CompraCRUD {
 					System.out.println("Valor: " + c2.getValor());
 					System.out.println("Quantidade: " + c2.getQuantidade());
 					System.out.println("CPF: " + c2.getCliente().getCpf());
-					System.out.println("ID Pacote" + c2.getPacotes().getIdPacote());
+					System.out.println("ID Pacote: " + c2.getPacotes().getIdPacote());
 					System.out.println("Data: " + c2.getDataCompra());
 					System.out.println("-------------------------------------------------");
 				}

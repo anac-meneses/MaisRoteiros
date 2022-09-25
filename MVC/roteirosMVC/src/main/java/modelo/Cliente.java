@@ -7,6 +7,7 @@ public class Cliente {
 	private String email;
 	private String senha;
 	private Login login;
+	private int loginId;
 	
 	public Cliente(String cpf, String telefone, String nome, String email, String senha, Login login) {
 		this.cpf = cpf;
@@ -68,6 +69,9 @@ public class Cliente {
 		this.login = login;
 	}
 	
-	
+	public int loginId() {
+		return loginId = login.getIdLogin() ;
+		
+	}
 	
 }

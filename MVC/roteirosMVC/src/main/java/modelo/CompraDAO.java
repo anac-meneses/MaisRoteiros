@@ -19,7 +19,7 @@ public class CompraDAO {
 		try {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
-			pstm.setDouble(1, compra.getValor());
+			pstm.setInt(1, compra.valorTotal());
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			pstm.setDate(2, new Date(formatter.parse(compra.getDataCompra()).getTime()));
 			pstm.setInt(3, compra.getQuantidade());
@@ -48,12 +48,12 @@ public class CompraDAO {
 		try {
 			conn = Conexao.createConnectionToMySQL();
 			pstm = conn.prepareStatement(sql);
-			pstm.setDouble(1, compra.getValor());
+			pstm.setInt(1, compra.valorTotal());
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			pstm.setDate(2, new Date(formatter.parse(compra.getDataCompra()).getTime()));
 			pstm.setInt(3, compra.getQuantidade());
-			pstm.setString(4, compra.getCliente().getCpf());
-			pstm.setInt(5, compra.getPacotes().getIdPacote());
+			pstm.setString(4, compra.cpf());
+			pstm.setInt(5, compra.idPacote());
 			pstm.setInt(6, compra.getIdCompra());
 			pstm.execute();
 
@@ -74,11 +74,8 @@ public class CompraDAO {
 	}
 
 	public List<Compra> getCompra() {
-		String sql = "SELECT * FROM compras";
+		String sql = "SELECT * FROM compra";
 		List<Compra> compra = new ArrayList<Compra>();
-		Compra compras = new Compra();
-		Cliente cliente = new Cliente();
-		Pacotes pacote = new Pacotes();
 
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -89,6 +86,9 @@ public class CompraDAO {
 
 			while (rset.next()) {
 
+				Compra compras = new Compra();
+				Cliente cliente = new Cliente();
+				Pacotes pacote = new Pacotes();
 				compras.setValor(rset.getDouble("valor"));
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 				compras.setDataCompra(formatter.format(rset.getDate("dataCompra")));
@@ -133,7 +133,7 @@ public class CompraDAO {
 	};
 
 	public Compra buscarID(int id) {
-		String sql = "SELECT * FROM compras WHERE idCompra = ?";
+		String sql = "SELECT * FROM compra WHERE idCompra = ?";
 		Compra compras = new Compra();
 		Cliente cliente = new Cliente();
 		Pacotes pacote = new Pacotes();

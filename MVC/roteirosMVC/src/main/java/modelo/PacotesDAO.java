@@ -50,7 +50,7 @@ public class PacotesDAO {
 			pstm.setString(1, pacotes.getTranslado());
 			pstm.setString(2, pacotes.getHotel());
 			pstm.setString(3, pacotes.getQtNoites());
-			pstm.setInt(4, pacotes.getDestino().getIdDestino());
+			pstm.setInt(4, pacotes.idDestino());
 			pstm.setInt(5, pacotes.getPreco());
 			pstm.setInt(6, pacotes.getIdPacote());
 			pstm.execute();
@@ -73,10 +73,8 @@ public class PacotesDAO {
 
 	public List<Pacotes> getPacotes(){
 		
-		String sql = "SELECT * FROM pacotes";
+		String sql = "SELECT * FROM destino";
 		List<Pacotes> pacote = new ArrayList<Pacotes>();
-		Pacotes pacotes = new Pacotes();
-		Destino destino = new Destino();
 		
 		try {
 			conn = Conexao.createConnectionToMySQL();
@@ -86,13 +84,16 @@ public class PacotesDAO {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
+				Pacotes pacotes = new Pacotes();
+				Destino destino = new Destino();
 				pacotes.setTranslado(rset.getString("translado"));
 				pacotes.setHotel(rset.getString("hotel"));
 				pacotes.setQtNoites(rset.getString("qtNoites"));
 				pacotes.setIdPacote(rset.getInt("idPacote"));
-				destino.setIdDestino(rset.getInt("idDestino"));
-				pacotes.setDestino(destino);
 				pacotes.setPreco(rset.getInt("preco"));
+				destino.setIdDestino(rset.getInt("destino"));
+				destino.setPais(rset.getString("pais"));
+				pacotes.setDestino(destino);
 				pacote.add(pacotes);			
 				
 			}

@@ -7,6 +7,7 @@ public class Pacotes {
 	private String qtNoites;
 	private int preco;
 	private Destino destino;
+	private int idDestino;
 
 	public Pacotes(int idPacotes, String translado, String hotel, String qtNoites, Destino destino, int preco) {
 		this.idPacote = idPacotes;
@@ -67,6 +68,9 @@ public class Pacotes {
 
 	public void setDestino(Destino destino) {
 		this.destino = destino;
+	}
+	public int idDestino() {
+		return idDestino = destino.getIdDestino();
 	}
 
 }

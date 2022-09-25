@@ -10,6 +10,9 @@ public class Compra {
 	private LocalDate dataCompra;
 	private Cliente cliente;
 	private Pacotes pacotes;
+	private int idPacote;
+	private String cpf;
+	private int valorTotal;
 
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -19,7 +22,7 @@ public class Compra {
 		this.dataCompra = LocalDate.parse(dataCompra, formatter);
 		this.cliente = cliente;
 		this.pacotes = pacotes;
-		valorTotal(pacotes.getPreco());
+		
 
 	}
 
@@ -73,8 +76,16 @@ public class Compra {
 	public void setPacotes(Pacotes pacotes) {
 		this.pacotes = pacotes;
 	}
-	private void valorTotal(double preco) {
-		this.valor = this.quantidade * preco;
+	public int valorTotal() {
+		return this.valorTotal = this.quantidade * pacotes.getPreco();
+	
 	}
-
+	
+	public int idPacote() {
+		return idPacote = pacotes.getIdPacote();
+	}
+	
+	public String cpf() {
+		return cpf = cliente.getCpf();
+	}
 }

@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-<title>Cadastro</title>
+<title>Login ADM</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -56,82 +54,72 @@
 		</nav>
 	</header>
 	<!-- navbar fim -->
-	<section class="vh-50 bg-image">
 
-		<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+
+	<section class="vh-50 bg-image gradient-custom-3">
+
+		<br> <br>
+		<div class="mask d-flex align-items-center h-100 ">
 			<div class="container h-100">
 
-				<br> <br>
+
 				<div
 					class="row d-flex justify-content-center align-items-center h-100">
 					<div class="col-12 col-md-9 col-lg-9 col-xl-9">
 						<div class="card" style="border-radius: 15px;">
 							<div class="card-body p-5">
-								<h2 class="text-uppercase text-center mb-5">Insira seus
-									dados</h2>
-
-								<form action="ClienteCadastro" method="get">
-									<div class="form-outline mb-4">
-										<input type="text" id="form3Example1cg"
-											class="form-control form-control-lg" name="nome" /> <label
-											class="form-label" for="form3Example1cg">Nome</label>
+								<ul class="nav nav-tabs">
+									<li class="nav-item"><a class="nav-link" href="login.html">Cliente</a></li>
+									<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="loginADM.html">Administrativo</a></li>
+								</ul>
+								<br>
+								<div class="row g-0 position-relative">
+									<div
+										class="col-md-6 mb-md-0 p-md-4 d-flex justify-content-center ">
+										<img src="destinos/rio-de-janeiro-g4f0169b10_1920.jpg"
+											class="card-img-top w-75" style="border-radius: 15px;">
 									</div>
-
-									<div class="form-outline mb-4">
-										<input type="email" id="form3Example3cg"
-											class="form-control form-control-lg" name="email" /> <label
-											class="form-label" for="form3Example3cg">Email</label>
+									<div class="col-md-6 p-4 ps-md-0">
+										<h5 class="mt-0">Venha Conhecer o RIO!</h5>
+										<p>O Rio de Janeiro, Ã© a cidade brasileira mais conhecida
+											no exterior tem a fama de possuir um povo alegre, Ã¡vido por
+											sol, praia, futebol e samba. Mas o Rio vai muito alÃ©m disso:
+											tem histÃ³ria.</p>
+										<a href="destino.html" class="stretched-link">Destinos</a>
 									</div>
-
+								</div>
+								<form action="loginADM" method="post">
+									<div class=" row mb-3 ">
+										<label for="exampleInputEmail1" class="form-label">Email</label>
+										<input type="email" class="form-control"
+											id="exampleInputEmail1" aria-describedby="emailHelp">
+										<div id="emailHelp" class="form-text">Entre com seu email institucional.</div>
+									</div>
+									<div class="row mb-3">
+										<label for="exampleInputPassword1" class="form-label">Password</label>
+										<input type="password" class="form-control"
+											id="exampleInputPassword1">
+									</div>
+									<br>
 									<div class="row">
-										<div class="col form-outline mb-4">
-
-											<input type="number" id="form3Example1cg"
-												class="form-control form-control-lg" name="cpf" /> <label
-												class="form-label" for="form3Example1cg">CPF</label>
-										</div>
-										<div class="col form-outline mb-4">
-
-											<input type="tel" id="form3Example1cg"
-												class="form-control form-control-lg" name="telefone" /> <label
-												class="form-label" for="form3Example1cg">Telefone</label>
-										</div>
+										<button type="submit" class="btn col-lg-2" id="buttonLogin">Submit</button>
 									</div>
-
-									<div class="form-outline mb-4">
-										<input type="password" id="form3Example4cg"
-											class="form-control form-control-lg" name="senha" /> <label
-											class="form-label" for="form3Example4cg">Senha</label>
-									</div>
-
-									<div class="form-outline mb-4">
-										<input type="password" id="form3Example4cdg"
-											class="form-control form-control-lg" /> <label
-											class="form-label" for="form3Example4cdg">Confirme a
-											sua senha</label>
-									</div>
-
-									<div class="d-flex justify-content-center">
-										<button type="submit" class="btn btn-lg" id="buttonLogin">Cadastrar</button>
-									</div>
-
-									<p class="text-center text-muted mt-5 mb-0">
-										Já tem uma conta? <a href="login.html"
-											class="fw-bold text-body"><u>Login</u></a>
-									</p>
-
 								</form>
 
+								<br> <br> <br>
 							</div>
 						</div>
-						<br> <br>
 					</div>
 				</div>
 			</div>
 		</div>
+		<br> <br>
+
 	</section>
 
-	<!-- footer começo -->
+
+	<!-- footer comeÃ§o -->
 	<footer>
 		<div class="container">
 			<br>
@@ -143,10 +131,10 @@
 					</h6>
 					<ul style="list-style: none;">
 						<li><a href="" class="list"> Trabalhe conosco</a></li>
-						<li><a href="" class="list"> Tire sua dúvida</a></li>
-						<li><a href="" class="list"> Política de privacidade</a></li>
+						<li><a href="" class="list"> Tire sua dÃºvida</a></li>
+						<li><a href="" class="list"> PolÃ­tica de privacidade</a></li>
 						<li><a href="" class="list"> Mapa do site</a></li>
-						<li><a href="" class="list"> Termos e condições</a></li>
+						<li><a href="" class="list"> Termos e condiÃ§Ãµes</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-4 col-sm-12">
@@ -188,7 +176,6 @@
 				</div>
 			</div>
 		</div>
-
 		</div>
 
 	</footer>
@@ -217,7 +204,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
 		integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
 		crossorigin="anonymous"></script>
-
 </body>
 
 </html>

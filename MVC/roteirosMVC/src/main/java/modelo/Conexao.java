@@ -8,7 +8,6 @@ public class Conexao {
 	
 	private static final String password = "";
 
-	// dados de caminho, porta e nome da base de dados que irá serfeita a conexão
 	private static final String database_url = "jdbc:mysql://localhost:3306/roteiros";
 
 	public static Connection createConnectionToMySQL() throws Exception {

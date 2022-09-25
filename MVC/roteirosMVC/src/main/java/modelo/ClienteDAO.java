@@ -43,7 +43,7 @@ public class ClienteDAO {
 	}
 
 	public void update(Cliente cliente) {
-		String sql = "UPDATE cliente SET telefone = ?, nome = ?, email = ?, senha = ?, idLogin = ? WHERE cpf = ?;";
+		String sql = "UPDATE cliente SET telefone = ?, nome = ?, email = ?, senha = ?, idLogin = ? WHERE cpf = ?";
 		
 
 		try {
@@ -53,7 +53,7 @@ public class ClienteDAO {
 			pstm.setString(2, cliente.getNome());
 			pstm.setString(3, cliente.getEmail());
 			pstm.setString(4, cliente.getSenha());
-			pstm.setInt(5, cliente.getLogin().getIdLogin());
+			pstm.setInt(5, cliente.loginId());
 			pstm.setString(6, cliente.getCpf());
 			pstm.execute();
 
@@ -74,7 +74,7 @@ public class ClienteDAO {
 	}
 
 	public List<Cliente> getCliente(){
-		String sql = "SELECT * FROM cliente";		
+		String sql = "SELECT * FROM clienteLogin";		
 		List<Cliente> cliente = new ArrayList<Cliente>();
 		
 		try {
@@ -92,7 +92,8 @@ public class ClienteDAO {
 				clientes.setNome(rset.getString("nome"));
 				clientes.setTelefone(rset.getString("telefone"));
 				clientes.setSenha(rset.getString("senha"));
-				login.setIdLogin(rset.getInt("idLogin"));
+				login.setIdLogin(rset.getInt("login"));
+				login.setTipoLogin(rset.getString("tipo_permissao"));
 				clientes.setLogin(login);
 				cliente.add(clientes);
 				
