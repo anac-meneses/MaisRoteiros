@@ -19,7 +19,7 @@
 	<header>
 		<nav class="navbar navbar-expand-sm navbar-dark">
 			<div class="container">
-				<a class="navbar-brand" href="../Home.html"><img
+				<a class="navbar-brand" href="./Home.html"><img
 					src="./icon/world.png" width="30" height="30"
 					class="d-inline-block align-text-top"> +ROTEIROS</a>
 				<button class="navbar-toggler d-lg-none" type="button"
@@ -33,17 +33,17 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavId">
 					<ul class="navbar-nav me-auto mt-2 mt-lg-0">
 						<li class="nav-item"><a class="nav-link"
-							href="../promocoes.html">Promo&ccedil;&otilde;es</a></li>
+							href="./promocoes.html">Promo&ccedil;&otilde;es</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="../destino.html">Destino</a></li>
+							href="./destino.html">Destino</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Login </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="../login.html">Login</a></li>
+								<li><a class="dropdown-item" href="./login.html">Login</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="../cadastro.jsp">Cadastro</a></li>
+								<li><a class="dropdown-item" href="./cadastro.jsp">Cadastro</a></li>
 							</ul></li>
 					</ul>
 				</div>
