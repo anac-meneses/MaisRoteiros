@@ -16,6 +16,15 @@ public class Cliente extends Pessoa {
 
 	@OneToMany(mappedBy = "cliente")
 	private List<Compra> compra;
+	
+
+	public List<Compra> getCompra() {
+		return compra;
+	}
+
+	public void setCompra(List<Compra> compra) {
+		this.compra = compra;
+	}
 
 	public Cliente(Login login, List<Compra> compra) {
 		this.login = login;
@@ -33,4 +42,5 @@ public class Cliente extends Pessoa {
 		this.login = login;
 	}
 
+	
 }

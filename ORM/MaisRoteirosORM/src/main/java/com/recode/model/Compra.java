@@ -82,7 +82,7 @@ public class Compra extends Entidade {
 		this.pacotes = pacotes;
 	}
 
-	public double valorTotal(Pacotes pacotes) {
+	public double valorTotal() {
 		return this.valor = this.quantidade * pacotes.getPreco();
 
 	}

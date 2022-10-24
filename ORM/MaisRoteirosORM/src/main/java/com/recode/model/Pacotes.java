@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -78,5 +75,23 @@ public class Pacotes extends Entidade {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+
+	public Destinos getDestinos() {
+		return destinos;
+	}
+
+	public void setDestinos(Destinos destinos) {
+		this.destinos = destinos;
+	}
+
+	public List<Compra> getCompra() {
+		return compra;
+	}
+
+	public void setCompra(List<Compra> compra) {
+		this.compra = compra;
+	}
+	
+	
 
 }
