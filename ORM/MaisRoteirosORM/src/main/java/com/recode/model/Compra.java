@@ -2,6 +2,7 @@ package com.recode.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,11 +24,11 @@ public class Compra extends Entidade {
 	@Column(nullable = false, length = 20)
 	private int quantidade;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "IdCliente", nullable = false)
 	private Cliente cliente;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "IdPacote", nullable = false)
 	private Pacotes pacotes;
 

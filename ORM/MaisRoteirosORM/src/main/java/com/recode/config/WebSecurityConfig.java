@@ -22,16 +22,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/resources/**").permitAll().antMatchers("/destinos/**").permitAll().antMatchers("/").permitAll().antMatchers("/funcionario/cadastrar").permitAll().antMatchers("/promocoes").permitAll()
+		http.authorizeRequests().antMatchers("/resources/**").permitAll().antMatchers("/destinos/**").permitAll().antMatchers("/").permitAll().antMatchers("/destino").permitAll().antMatchers("/promocoes").permitAll().antMatchers("/cliente/cadastro").permitAll()
 				.antMatchers("/icon/**").permitAll().antMatchers("/css/**").permitAll().anyRequest().authenticated();
 //		// .antMatchers("/**/editar").hasAuthority(Perfil.ADMIN.toString());
 //		// .antMatchers("/**/excluir").hasAuthority(Perfil.ADMIN.toString());
 //
 		
-		http.formLogin().loginPage("/loginADM").defaultSuccessUrl("/adm").permitAll();
+		http.formLogin().usernameParameter("email").passwordParameter("senha").loginPage("/login").defaultSuccessUrl("/adm").permitAll();
 
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).logoutSuccessUrl("/login");
 
+		
 		http.rememberMe().key("chaverememberMe");
 
 		//http.rememberMe().key("chaverememberMe");

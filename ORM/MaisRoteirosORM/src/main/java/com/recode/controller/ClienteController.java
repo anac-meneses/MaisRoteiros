@@ -31,8 +31,17 @@ public class ClienteController {
 	        return modelAndView;
 	    }
 	    
-	    @GetMapping("/cadastrar")
+	    @GetMapping("/cadastro")
 	    public ModelAndView cadastrar() {
+	        ModelAndView modelAndView = new ModelAndView("Views/login/cadastro");
+	        modelAndView.addObject("cliente", new Cliente());
+	        modelAndView.addObject("login", loginRepositorio.findAll());
+	        
+	        return modelAndView;
+	    }
+	    
+	    @GetMapping("/cadastrar")
+	    public ModelAndView cadastro() {
 	        ModelAndView modelAndView = new ModelAndView("Views/cliente/cliente");
 	        modelAndView.addObject("cliente", new Cliente());
 	        modelAndView.addObject("login", loginRepositorio.findAll());
@@ -51,7 +60,7 @@ public class ClienteController {
 	    }
 	    
 	    
-	    @PostMapping({"/cadastrar", "/{id}/editar"})
+	    @PostMapping({"/cadastrar", "/{id}/editar", "/cadastro"})
 	    public String salvar(Cliente cliente) {
 	        clienteRepositorio.save(cliente);
 	        return "redirect:/cliente";

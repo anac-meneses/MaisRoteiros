@@ -13,13 +13,12 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
 	
-	 // @Override public Collection<? extends GrantedAuthority> getAuthorities() {
-	 // Perfil perfil = funcionario.getCargo().getNome().equals("Gerente") ?
-	 // Perfil.ADMIN : Perfil.USER;
-	  
-	// return AuthorityUtils.createAuthorityList(perfil.toString()); }
+//	@Override public Collection<? extends GrantedAuthority> getAuthorities() {
+//	 Perfil perfil = funcionario.getCargo().getNome().equals("Gerente") ?
+//	 Perfil.ADMIN : Perfil.USER;
+//	  
+//	 return AuthorityUtils.createAuthorityList(perfil.toString()); }
 	 
 
     @Override
@@ -37,7 +36,6 @@ public class UserDetailsImpl implements UserDetails {
         // TODO Auto-generated method stub
         return true;
     }
-
    
 
     @Override
